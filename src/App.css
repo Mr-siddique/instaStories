@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.stories-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 8px;
+  max-width: 100%;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.stories-container::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

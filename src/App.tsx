@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchStories } from './stories/api';
-import { Story } from './stories/types';
+import { Story as StoryType } from './Stories/types';
 
 interface Story {
   url: string;
@@ -14,11 +14,13 @@ interface Story {
   seeMore?: () => React.ReactNode;
 }
 
-const StoryViewer: React.FC<{
-  stories: Story[];
+interface StoryViewerProps {
+  stories: StoryType[];
   defaultInterval: number;
   initialStoryIndex: number;
-}> = ({ stories, defaultInterval, initialStoryIndex }) => {
+}
+
+const StoryViewer: React.FC<StoryViewerProps> = ({ stories, defaultInterval, initialStoryIndex }) => {
   const [currentStory, setCurrentStory] = useState(initialStoryIndex);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -201,7 +203,7 @@ const StoryViewer: React.FC<{
 };
 
 const StoryCircle: React.FC<{
-  story: Story;
+  story: StoryType;
   onClick: () => void;
   isSelected: boolean;
 }> = ({ story, onClick, isSelected }) => {
@@ -275,7 +277,7 @@ const StoryCircle: React.FC<{
 };
 
 const App: React.FC = () => {
-  const [stories, setStories] = useState<Story[]>([]);
+  const [stories, setStories] = useState<StoryType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedStoryIndex, setSelectedStoryIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -361,21 +363,24 @@ const App: React.FC = () => {
         opacity: selectedStoryIndex !== null ? 0 : 1,
         transition: 'opacity 0.3s ease-out',
       }}>
-        <div style={{
-          display: 'flex',
-          padding: '12px 8px',
-          overflowX: 'auto',
-          maxWidth: '100%',
-          margin: '0 auto',
-          justifyContent: 'flex-start',
-          boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
-          WebkitOverflowScrolling: 'touch',
-          msOverflowStyle: 'none',
-          scrollbarWidth: 'none',
-          '::-webkit-scrollbar': { display: 'none' },
-          paddingLeft: 'max(8px, env(safe-area-inset-left))',
-          paddingRight: 'max(8px, env(safe-area-inset-right))',
-        }}>
+        <div 
+          data-testid="stories-container" 
+          className="stories-container"
+          style={{
+            display: 'flex',
+            padding: '12px 8px',
+            overflowX: 'auto',
+            maxWidth: '100%',
+            margin: '0 auto',
+            justifyContent: 'flex-start',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+            WebkitOverflowScrolling: 'touch',
+            msOverflowStyle: 'none',
+            scrollbarWidth: 'none',
+            paddingLeft: 'max(8px, env(safe-area-inset-left))',
+            paddingRight: 'max(8px, env(safe-area-inset-right))',
+          }}
+        >
           <div style={{ 
             display: 'flex',
             gap: '8px',
