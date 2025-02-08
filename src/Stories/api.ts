@@ -2,7 +2,6 @@ import { Story } from './types';
 import { ReactNode } from 'react';
 
 export async function fetchStories(): Promise<Story[]> {
-  // Simulating API call - in real app, replace with actual API fetch
    const stories = [
     {
       url: 'https://picsum.photos/1080/1920',

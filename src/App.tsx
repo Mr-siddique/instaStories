@@ -1,18 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { fetchStories } from './stories/api';
+import { fetchStories } from './Stories/api';
 import { Story as StoryType } from './Stories/types';
 
-interface Story {
-  url: string;
-  type?: 'image' | 'video';
-  duration?: number;
-  header?: {
-    heading: string;
-    subheading: string;
-    profileImage: string;
-  };
-  seeMore?: () => React.ReactNode;
-}
 
 interface StoryViewerProps {
   stories: StoryType[];
@@ -120,7 +109,6 @@ const StoryViewer: React.FC<StoryViewerProps> = ({ stories, defaultInterval, ini
         ))}
       </div>
 
-      {/* Loading spinner */}
       {isLoading && (
         <div style={{
           position: 'absolute',
@@ -314,7 +302,7 @@ const App: React.FC = () => {
     setSelectedStoryIndex(index);
     setTimeout(() => {
       setIsTransitioning(false);
-    }, 150); // Match the transition duration
+    }, 150); 
   };
 
   const closeStory = () => {
