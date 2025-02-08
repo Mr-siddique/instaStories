@@ -51,10 +51,10 @@ export default tseslint.config({
 
 # InstaStories
 
-A performant and scalable Instagram-style stories viewer built with React and TypeScript. View the live demo at [deployment-link-here].
+A performant and scalable Instagram-style stories viewer built with React and TypeScript.
 
 ## 🚀 Live Demo
-
+https://insta-stories-9aat-kb7qxln85-mrsiddiques-projects.vercel.app/
 
 ## ✨ Features
 - Instagram-style story viewer
